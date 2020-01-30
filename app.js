@@ -45,6 +45,7 @@ app.use(express.json());
 // Set routes
 app.get('/', index.getHomePage);
 app.get('/add', player.addPlayerPage);
+app.get('/edit/:id', player.editPlayerPage);
 app.post('/add', player.addPlayer);
 
 function listenCallback() {

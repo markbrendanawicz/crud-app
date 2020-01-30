@@ -2,7 +2,9 @@ module.exports = {
     // Load the form to add a player - GET
     addPlayerPage: function (request, response) {
         // Load the page
-        response.render('edit-player');
+        response.render('edit-player', {
+            add: true
+        });
     },
 
     // Add a player to the database - POST
@@ -26,5 +28,28 @@ module.exports = {
             // New player added successfully, reload homepage
             response.redirect('/');
         });
-    }
+    },
+
+    // Load the form to edit a player - GET
+    editPlayerPage: function (request, response) {
+        // Get player ID from the request
+        let playerId = request.params.id;
+
+        // Query to find information about the player with the given ID
+        let query = `SELECT * FROM players WHERE id = ${playerId};`;
+
+        // Execute the query
+        db.query(query, function (error, result) {
+            if (error) {
+                // Send server Error
+                return response.status(500).send(error);
+            }
+
+            // Load the page
+            response.render('edit-player', {
+                add: false,
+                player: result[0]
+            });
+        });
+    },
 }

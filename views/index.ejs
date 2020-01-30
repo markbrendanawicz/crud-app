@@ -9,6 +9,7 @@
                 <th>Last Name</th>
                 <th>Position</th>
                 <th>Number</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +20,9 @@
                 <td><%= players[i].last_name %></td>
                 <td><%= players[i].position %></td>
                 <td><%= players[i].number %></td>
+                <td>
+                    <a href="/edit/<%= players[i].id %>" class="btn btn-sm btn-success">Edit</a>
+                </td>
             </tr>
         <% } %>
         </tbody>
