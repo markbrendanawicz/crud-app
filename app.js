@@ -47,6 +47,7 @@ app.get('/', index.getHomePage);
 app.get('/add', player.addPlayerPage);
 app.get('/edit/:id', player.editPlayerPage);
 app.post('/add', player.addPlayer);
+app.post('/edit/:id', player.editPlayer);
 
 function listenCallback() {
     console.log(`Listening on http://${hostname}:${port}`);

@@ -52,4 +52,24 @@ module.exports = {
             });
         });
     },
+
+    editPlayer: function(request, response) {
+        let playerId = request.params.id;
+        let first_name = request.body.first_name;
+        let last_name = request.body.last_name;
+        let position = request.body.position;
+        let number = request.body.number;
+
+        let query = `UPDATE players
+        SET first_name = '${first_name}', last_name = '${last_name}', position = '${position}', number = ${number}
+        WHERE id = ${playerId};`
+
+        db.query(query, function (error, result) {
+            if (error) {
+                return response.status(500).send(error);
+            }
+
+            response.redirect('/');
+        });
+    }
 }
