@@ -19,5 +19,5 @@ module.exports = {
 
         // Execute query
         db.query(query, queryCallback);
-    },
+    }
 };
