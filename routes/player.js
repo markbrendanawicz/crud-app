@@ -71,5 +71,24 @@ module.exports = {
 
             response.redirect('/');
         });
+    },
+    
+    // Delete a player from the database - GET
+    deletePlayer: function (request, response) {
+        // Get player ID from request
+        let playerId = request.params.id;
+    
+        // Query to delete the given player
+        let query = `DELETE FROM players WHERE id = ${playerId};`;
+    
+        db.query(query, function (error, result) {
+            if (error) {
+                // Send server error
+                return response.status(500).send(error);
+            }
+    
+            // Delete successful, return to homepage
+            response.redirect('/');
+        });
     }
 }

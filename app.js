@@ -46,6 +46,7 @@ app.use(express.json());
 app.get('/', index.getHomePage);
 app.get('/add', player.addPlayerPage);
 app.get('/edit/:id', player.editPlayerPage);
+app.get('/delete/:id', player.deletePlayer);
 app.post('/add', player.addPlayer);
 app.post('/edit/:id', player.editPlayer);
 
