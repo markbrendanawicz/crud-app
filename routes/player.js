@@ -47,48 +47,54 @@ module.exports = {
 
             // Load the page
             response.render('edit-player', {
-                add: false,
-                player: result[0]
+                player: result[0],
+                add: false
             });
         });
     },
 
-    editPlayer: function(request, response) {
+    // Update a player in the database - POST
+    editPlayer: function (request, response) {
+        // Get values from the request
         let playerId = request.params.id;
         let first_name = request.body.first_name;
         let last_name = request.body.last_name;
         let position = request.body.position;
         let number = request.body.number;
 
+        // Query to update the existing player
         let query = `UPDATE players
-        SET first_name = '${first_name}', last_name = '${last_name}', position = '${position}', number = ${number}
-        WHERE id = ${playerId};`
+            SET first_name = '${first_name}', last_name = '${last_name}', position = '${position}', number = ${number}
+            WHERE id = ${playerId};`;
 
-        db.query(query, function (error, result) {
-            if (error) {
-                return response.status(500).send(error);
-            }
-
-            response.redirect('/');
-        });
-    },
-    
-    // Delete a player from the database - GET
-    deletePlayer: function (request, response) {
-        // Get player ID from request
-        let playerId = request.params.id;
-    
-        // Query to delete the given player
-        let query = `DELETE FROM players WHERE id = ${playerId};`;
-    
+        // Execute the query
         db.query(query, function (error, result) {
             if (error) {
                 // Send server error
                 return response.status(500).send(error);
             }
-    
+
+            // Update successful, return to homepage
+            response.redirect('/');
+        });
+    },
+
+    // Delete a player from the database - GET
+    deletePlayer: function (request, response) {
+        // Get player ID from request
+        let playerId = request.params.id;
+
+        // Query to delete the given player
+        let query = `DELETE FROM players WHERE id = ${playerId};`;
+
+        db.query(query, function (error, result) {
+            if (error) {
+                // Send server error
+                return response.status(500).send(error);
+            }
+
             // Delete successful, return to homepage
             response.redirect('/');
         });
     }
-}
+};

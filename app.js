@@ -4,7 +4,7 @@ const mysql = require('mysql');
 
 // Set hosting information
 const hostname = '127.0.0.1';
-const port = 5000;
+const port = 3000;
 
 // Pull route functions
 const index = require('./routes/index');
@@ -38,9 +38,11 @@ global.db = db;
 
 // Initialize app
 let app = express();
+
+// Setup middleware
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(express.json()); // parse form data client
 
 // Set routes
 app.get('/', index.getHomePage);
