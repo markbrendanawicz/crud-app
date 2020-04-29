@@ -53,7 +53,7 @@ app.post('/add', player.addPlayer);
 app.post('/edit/:id', player.editPlayer);
 
 function listenCallback() {
-    console.log(`Listening on http://${hostname}:${port}`);
+    console.log(`Listening on ${port}`);
 }
 
-app.listen(port, hostname, listenCallback);
+app.listen(port, listenCallback);
