@@ -2,8 +2,7 @@
 const express = require('express');
 const mysql = require('mysql');
 
-// Set hosting information
-const hostname = '127.0.0.1';
+// Set port information
 const port = process.env.PORT || 3000;
 
 // Pull route functions
@@ -18,23 +17,8 @@ const dbConfig = {
     database: 'heroku_ec7af78531aff9f'
 }
 
-// Create the database using the config
-const db = mysql.createPool(dbConfig);
-
-// Function to run on connect
-function connectCallback (error) {
-    if (error) {
-        throw error;
-    }
-
-    console.log('Connected to the database');
-}
-
-// Open the connection to the database
-// db.connect(connectCallback);
-
-// Set global db variable
-global.db = db;
+// Create the database pool using the config
+global.db = mysql.createPool(dbConfig);
 
 // Initialize app
 let app = express();
@@ -53,7 +37,7 @@ app.post('/add', player.addPlayer);
 app.post('/edit/:id', player.editPlayer);
 
 function listenCallback() {
-    console.log(`Listening on ${port}`);
+    console.log(`Listening on port ${port}`);
 }
 
 app.listen(port, listenCallback);
