@@ -19,7 +19,7 @@ const dbConfig = {
 }
 
 // Create the database using the config
-const db = mysql.createConnection(dbConfig);
+const db = mysql.createPool(dbConfig);
 
 // Function to run on connect
 function connectCallback (error) {
