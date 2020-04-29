@@ -4,7 +4,7 @@ const mysql = require('mysql');
 
 // Set hosting information
 const hostname = '127.0.0.1';
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Pull route functions
 const index = require('./routes/index');
@@ -12,10 +12,10 @@ const player = require('./routes/player');
 
 // Configuration object
 const dbConfig = {
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'soccer'
+    host: 'us-cdbr-iron-east-01.cleardb.net',
+    user: 'bd1999ebbd1d24',
+    password: '2719f6a6',
+    database: 'heroku_ec7af78531aff9f'
 }
 
 // Create the database using the config
