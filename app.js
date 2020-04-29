@@ -31,7 +31,7 @@ function connectCallback (error) {
 }
 
 // Open the connection to the database
-db.connect(connectCallback);
+// db.connect(connectCallback);
 
 // Set global db variable
 global.db = db;
